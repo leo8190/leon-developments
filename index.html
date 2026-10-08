@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>León Developments</title>
+<meta name="description" content="León Developments is a one-founder software studio in Buenos Aires building focused tools: TrasteFiel, RecordPress, SpecPack PDF and Pausa Mía.">
+<link rel="canonical" href="https://labs.leonardoapollonio.com/">
+<meta property="og:title" content="León Developments">
+<meta property="og:description" content="Recordings into tabs. Spreadsheets into documents. A one-founder software studio in Buenos Aires.">
+<meta property="og:url" content="https://labs.leonardoapollonio.com/">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23172036'/%3E%3Cpath d='M20 14v36h24' stroke='%2374ACDF' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='44' cy='22' r='6' fill='%23F2B53A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F3F6FA;
+    --ink: #172036;
+    --celeste: #74ACDF;
+    --celeste-deep: #2F6EA8;
+    --sol: #F2B53A;
+    --slate: #556078;
+    --line: #D5DEEA;
+    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --text: "Newsreader", Georgia, "Times New Roman", serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--text);
+    font-size: 1.1875rem;
+    line-height: 1.6;
+  }
+  a { color: var(--celeste-deep); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { color: var(--ink); }
+  a:focus-visible { outline: 3px solid var(--sol); outline-offset: 3px; border-radius: 2px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  header.site { padding: 28px 0; }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .wordmark { font-family: var(--display); font-weight: 800; font-size: 1.25rem; letter-spacing: -0.01em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+  .wordmark svg { width: 28px; height: 28px; flex: none; }
+  nav.site a { font-family: var(--display); font-weight: 500; font-size: 1rem; color: var(--ink); text-decoration: none; margin-left: 22px; }
+  nav.site a:first-child { margin-left: 0; }
+  nav.site a:hover { text-decoration: underline; }
+
+  .hero { padding: 40px 0 72px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; }
+  h1 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2.6rem, 5.6vw, 4.4rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin: 0 0 24px;
+  }
+  .lede { max-width: 34em; font-size: 1.3125rem; margin: 0 0 28px; }
+  .hero-links { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--display); font-weight: 700; font-size: 1rem;
+    padding: 13px 20px; border-radius: 10px; text-decoration: none; display: inline-block;
+  }
+  .btn.solid { background: var(--ink); color: var(--paper); }
+  .btn.solid:hover { background: var(--celeste-deep); color: #fff; }
+  .btn.quiet { color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+  .btn.quiet:hover { background: var(--ink); color: var(--paper); }
+
+  figure.demo { margin: 0; }
+  figure.demo svg { width: 100%; height: auto; display: block; }
+  figure.demo figcaption { font-family: var(--display); font-size: 0.95rem; color: var(--slate); margin-top: 10px; }
+  .bar { fill: var(--celeste); transform-box: fill-box; transform-origin: center; }
+  .string { stroke: var(--ink); stroke-width: 1.2; opacity: 0.55; }
+  .tuning { font-family: var(--display); font-size: 13px; fill: var(--slate); }
+  .fret rect { fill: var(--paper); }
+  .fret text { font-family: var(--display); font-weight: 700; font-size: 17px; fill: var(--ink); text-anchor: middle; dominant-baseline: central; }
+  .fret circle { fill: var(--sol); }
+  @media (prefers-reduced-motion: no-preference) {
+    .bar { animation: rise 700ms cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--i) * 28ms); }
+    .fret { animation: land 420ms ease-out both; animation-delay: calc(900ms + var(--i) * 110ms); }
+    @keyframes rise { from { transform: scaleY(0.05); opacity: 0; } to { transform: scaleY(1); opacity: 1; } }
+    @keyframes land { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  }
+
+  section.block { padding: 72px 0; }
+  section.block + section.block { padding-top: 24px; }
+  h2 {
+    font-family: var(--display); font-weight: 800;
+    font-size: clamp(1.9rem, 3.4vw, 2.6rem); letter-spacing: -0.02em; line-height: 1.1;
+    margin: 0 0 12px;
+  }
+  .section-intro { color: var(--slate); max-width: 36em; margin: 0 0 40px; }
+
+  .products { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; }
+  .product {
+    display: grid; grid-template-columns: 260px 1fr; gap: 28px;
+    background: #fff; border-radius: 6px; padding: 28px 30px 28px 34px;
+    border-left: 6px solid var(--status, var(--slate));
+  }
+  .product[data-status="live"] { --status: var(--sol); }
+  .product[data-status="beta"] { --status: var(--celeste); }
+  .product[data-status="prototype"] { --status: var(--slate); }
+  .product.flagship { padding-top: 36px; padding-bottom: 36px; }
+  .product h3 { font-family: var(--display); font-weight: 800; font-size: 1.7rem; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; }
+  .product.flagship h3 { font-size: 2.3rem; }
+  .status { font-family: var(--display); font-weight: 500; font-size: 0.95rem; color: var(--slate); margin: 0; }
+  .status strong { color: var(--ink); font-weight: 700; }
+  .product p.what { margin: 0 0 14px; max-width: 38em; }
+  .product .go { font-family: var(--display); font-weight: 700; font-size: 1rem; }
+
+  .founder { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: start; }
+  .founder p { margin: 0 0 18px; max-width: 34em; }
+  .founder-links { list-style: none; margin: 0; padding: 0; font-family: var(--display); font-weight: 500; }
+  .founder-links li { margin-bottom: 8px; }
+
+  .contact { background: var(--ink); color: var(--paper); border-radius: 10px; padding: 48px 40px; }
+  .contact h2 { color: #fff; }
+  .contact p { margin: 0 0 22px; max-width: 34em; color: #D9E3F0; }
+  .contact a.mail { font-family: var(--display); font-weight: 800; font-size: clamp(1.05rem, 4.6vw, 2.1rem); color: var(--celeste); text-decoration: none; overflow-wrap: anywhere; }
+  .contact a.mail:hover { color: #fff; text-decoration: underline; }
+
+  footer.site { padding: 36px 0 48px; color: var(--slate); font-family: var(--display); font-size: 0.95rem; }
+
+  @media (max-width: 860px) {
+    .hero .wrap, .founder { grid-template-columns: 1fr; gap: 32px; }
+    .product { grid-template-columns: 1fr; gap: 10px; padding: 24px 22px 24px 24px; }
+    .product.flagship h3 { font-size: 2rem; }
+    nav.site a { margin-left: 16px; }
+    .contact { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="wordmark" href="#top" aria-label="León Developments, home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#172036"/><path d="M20 14v36h24" stroke="#74ACDF" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="22" r="6" fill="#F2B53A"/></svg>
+      León Developments
+    </a>
+    <nav class="site" aria-label="Sections">
+      <a href="#products">Products</a>
+      <a href="#founder">Founder</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Recordings into tabs. Spreadsheets into documents.</h1>
+        <p class="lede">León Developments is a one-founder software studio in Buenos Aires. We build focused tools that take the raw material people already have and hand back something they can use, starting with musicians and small product teams.</p>
+        <div class="hero-links">
+          <a class="btn solid" href="#products">See the products</a>
+          <a class="btn quiet" href="mailto:leo@leonardoapollonio.com">Email the founder</a>
+        </div>
+      </div>
+
+      <figure class="demo">
+        <svg viewBox="0 0 520 250" role="img" aria-labelledby="demo-title">
+          <title id="demo-title">A guitar waveform on the left becomes a six-string tablature staff with fret numbers on the right.</title>
+          <g id="wave"></g>
+          <g>
+            <line class="string" x1="262" y1="50" x2="512" y2="50"/>
+            <line class="string" x1="262" y1="80" x2="512" y2="80"/>
+            <line class="string" x1="262" y1="110" x2="512" y2="110"/>
+            <line class="string" x1="262" y1="140" x2="512" y2="140"/>
+            <line class="string" x1="262" y1="170" x2="512" y2="170"/>
+            <line class="string" x1="262" y1="200" x2="512" y2="200"/>
+            <text class="tuning" x="248" y="54">e</text>
+            <text class="tuning" x="248" y="84">B</text>
+            <text class="tuning" x="248" y="114">G</text>
+            <text class="tuning" x="248" y="144">D</text>
+            <text class="tuning" x="248" y="174">A</text>
+            <text class="tuning" x="248" y="204">E</text>
+          </g>
+          <g id="frets"></g>
+        </svg>
+        <figcaption>TrasteFiel, our flagship, turns a guitar recording into an editable tab.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block" id="products">
+    <div class="wrap">
+      <h2>Products</h2>
+      <p class="section-intro">Each one solves a single job end to end. The colored edge shows where it stands: yellow is live, blue is in beta, gray is a prototype.</p>
+
+      <ul class="products">
+        <li class="product flagship" data-status="beta">
+          <div>
+            <h3>TrasteFiel</h3>
+            <p class="status"><strong>Live beta.</strong> Web app, free plan.</p>
+          </div>
+          <div>
+            <p class="what">Turns a guitar recording into an editable tablature draft. It separates the guitar from the mix, detects the notes and exports MusicXML and MIDI for MuseScore or Guitar Pro. If the detection is not reliable enough, it says so instead of handing over a wrong tab. An Android beta is with testers.</p>
+            <a class="go" href="https://trastefiel.fly.dev/">Try TrasteFiel</a>
+          </div>
+        </li>
+
+        <li class="product" data-status="live">
+          <div>
+            <h3>RecordPress</h3>
+            <p class="status"><strong>Live.</strong> Free tool.</p>
+          </div>
+          <div>
+            <p class="what">Turns a SmartSuite CSV export into a branded, client-ready PDF. Everything runs in the browser, so the data never leaves the user's device, and there is no sign-up.</p>
+            <a class="go" href="https://getrecordpress.com/">Open RecordPress</a>
+          </div>
+        </li>
+
+        <li class="product" data-status="beta">
+          <div>
+            <h3>SpecPack PDF</h3>
+            <p class="status"><strong>Beta.</strong> Setup slots open.</p>
+          </div>
+          <div>
+            <p class="what">Builds supplier-ready apparel tech packs, with measurements, bill of materials and colorways, from product data that teams already keep in Airtable, Glide or Google Sheets.</p>
+            <a class="go" href="https://specpackpdf.com/">See SpecPack PDF</a>
+          </div>
+        </li>
+
+        <li class="product" data-status="prototype">
+          <div>
+            <h3>Pausa Mía</h3>
+            <p class="status"><strong>Prototype.</strong> In user testing.</p>
+          </div>
+          <div>
+            <p class="what">Short, personalized guided meditations that play in the browser, in Spanish, with a guest mode that needs no account.</p>
+            <a class="go" href="https://leo8190.github.io/pausa-mia/">Try Pausa Mía</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="founder">
+    <div class="wrap founder">
+      <div>
+        <h2>Founder</h2>
+      </div>
+      <div>
+        <p>León Developments is run by Leonardo Apollonio, a senior full-stack engineer with more than eight years building production systems in .NET, Angular and React for banking, media, maritime logistics and energy companies.</p>
+        <p>He designs, builds and ships every product here, and uses AI assistants as part of the daily build loop.</p>
+        <ul class="founder-links">
+          <li><a href="https://leonardoapollonio.com/">Engineering portfolio</a></li>
+          <li><a href="https://github.com/leo8190">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/leonardo-apollonio/">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <h2>Talk to us</h2>
+        <p>Questions about a product, a pilot for your team or a partnership go straight to the founder.</p>
+        <a class="mail" href="mailto:leo@leonardoapollonio.com">leo@leonardoapollonio.com</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">© 2026 León Developments, Buenos Aires, Argentina.</div>
+</footer>
+
+<script>
+  (function () {
+    var ns = "http://www.w3.org/2000/svg";
+    var wave = document.getElementById("wave");
+    var heights = [10,18,30,52,74,96,120,140,128,104,86,112,136,150,132,98,70,88,110,94,72,54,66,48,34,26,18,12];
+    heights.forEach(function (h, i) {
+      var r = document.createElementNS(ns, "rect");
+      var w = 5, gap = 3.2, x = 8 + i * (w + gap);
+      r.setAttribute("x", x);
+      r.setAttribute("y", 125 - h / 2);
+      r.setAttribute("width", w);
+      r.setAttribute("height", h);
+      r.setAttribute("rx", 2.5);
+      r.setAttribute("class", "bar");
+      r.style.setProperty("--i", i);
+      r.style.opacity = String(Math.max(0.35, 1 - i / 34));
+      wave.appendChild(r);
+    });
+    var strings = [50, 80, 110, 140, 170, 200];
+    var notes = [[292,2,5],[322,2,7],[352,1,5],[382,1,8],[412,0,5],[442,1,8],[472,2,7],[500,3,7]];
+    var frets = document.getElementById("frets");
+    notes.forEach(function (n, i) {
+      var g = document.createElementNS(ns, "g");
+      g.setAttribute("class", "fret");
+      g.style.setProperty("--i", i);
+      var y = strings[n[1]];
+      var bg = document.createElementNS(ns, "rect");
+      bg.setAttribute("x", n[0] - 10); bg.setAttribute("y", y - 11);
+      bg.setAttribute("width", 20); bg.setAttribute("height", 22);
+      g.appendChild(bg);
+      if (i === 0) {
+        var c = document.createElementNS(ns, "circle");
+        c.setAttribute("cx", n[0]); c.setAttribute("cy", y); c.setAttribute("r", 13);
+        g.appendChild(c);
+      }
+      var t = document.createElementNS(ns, "text");
+      t.setAttribute("x", n[0]); t.setAttribute("y", y);
+      t.textContent = n[2];
+      g.appendChild(t);
+      frets.appendChild(g);
+    });
+  })();
+</script>
+</body>
+</html>
